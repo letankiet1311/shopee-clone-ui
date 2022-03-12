@@ -28,7 +28,9 @@ html {
         justify-content: space-between;
         align-items: center;
         padding-top: 8px;
+        margin-left: 16px;
         @include toCenter();
+        max-width: calc(100% - 16px);
     }
     &__nav-list {
         display: flex;
@@ -58,6 +60,17 @@ html {
     &__nav-item-link {
         text-decoration: none;
         color: #fff;
+    }
+    &__nav-item-img {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        @include absoluteCenter(top);
+        left: 0;
+    }
+    &__nav-item-name {
+        font-size: 1.4rem;
+        margin-left: 28px;
     }
     &__nav-icon-link {
         color: #fff;
@@ -227,6 +240,49 @@ html {
     &__language-item:first-child {
         border-bottom: 1px solid #ddd;
     }
+    // Account
+    &__nav-item--has-account:hover &__account {
+        display: block;
+    }
+    &__account {
+        display: none;
+        list-style: none;
+        position: absolute;
+        top: calc(100% + 12px);
+        right: 0;
+        background-color: #fff;
+        border-radius: 3px;
+        @include boxShadow();
+        z-index: 2;
+        min-width: 160px;
+        transform-origin: calc(100% - 28px) top;
+        animation: growth linear 0.15s;
+
+        &::before {
+            content: "";
+            @include pseudoBridge(12px);
+        }
+        &::after {
+            content: "";
+            @include borderTriangle(-10px, 0);
+        }
+        &-item {
+            padding: 12px 16px;
+
+            &:hover {
+                background-color: #fafafa;
+                cursor: pointer;
+            }
+            &:hover &-link {
+                color: $primaryColor;
+            }
+            &-link {
+                color: $textColor;
+                font-size: 1.4rem;
+                text-decoration: none;
+            }
+        }
+    }
     // Container
     &__container {
         flex: 1;
@@ -326,6 +382,9 @@ html {
             text-decoration: none;
             font-size: 1.2rem;
         }
+        &-recent-item--link:hover {
+            opacity: 0.8;
+        }
     }
     &__cart {
         position: relative;
@@ -368,6 +427,7 @@ html {
             @include boxShadow();
             cursor: default;
             display: none;
+            z-index: 2;
 
             &::before {
                 content: "";
@@ -452,4 +512,160 @@ html {
             margin: 8px 10px 8px auto;
         }
     }
+}
+// Model authentication
+.model__container.register .auth-form--register {
+    display: block;
+}
+.model__container.login .auth-form--login {
+    display: block;
+}
+// Register
+.auth {
+    &-form {
+        padding: 32px;
+
+        &__heading {
+            font-size: 2rem;
+            font-weight: 500;
+            padding: 16px 0;
+        }
+        &__group {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+        &__input {
+            padding: 12px 0;
+            position: relative;
+
+            &-area {
+                padding: 12px 16px;
+                font-size: 1.4rem;
+                outline: none;
+                width: 100%;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+
+                &:focus {
+                    border: 1px solid #000;
+                }
+                &::placeholder {
+                    color: #999;
+                    font-weight: 300;
+                }
+            }
+            &-eye {
+                position: absolute;
+                @include absoluteCenter(top);
+                right: 0;
+                cursor: pointer;
+                padding: 8px;
+                margin-right: 8px;
+                font-size: 1.4rem;
+                color: $textColor;
+            }
+
+            &--has-password.active &-eye--open {
+                display: block;
+            }
+            &--has-password.active &-eye--close {
+                display: none;
+            }
+        }
+        &-btn {
+            margin-left: auto;
+            margin-top: 12px;
+        }
+        &-separate {
+            font-size: 1.4rem;
+            color: #999;
+            text-align: center;
+            margin-top: 24px;
+            position: relative;
+            &::before {
+                content: "";
+                display: block;
+                height: 2px;
+                width: calc(50% - 40px);
+                @include absoluteCenter(top);
+                color: red;
+            }
+            &::after {
+                content: "";
+                display: inline-block;
+                height: 2px;
+                width: calc(50% - 40px);
+                @include absoluteCenter(top);
+                right: 0;
+                color: red;
+            }
+        }
+        &-help {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+            &-forgot,
+            &-sms {
+                color: rgb(5, 5, 218);
+                font-size: 1.2rem;
+                text-decoration: none;
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+        &__connect {
+            display: flex;
+            justify-content: space-between;
+            margin: 24px 0;
+            &-item {
+                font-size: 1.4rem;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                padding: 10px 12px;
+                width: 30%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                &:hover {
+                    cursor: pointer;
+                    background-color: #fafafa;
+                }
+            }
+            &-icon {
+                font-size: 2rem;
+                margin-right: 8px;
+            }
+        }
+
+        &__privacy {
+            margin: 0 56px;
+            font-size: 1.3rem;
+            color: $textColor;
+            text-align: center;
+            &-link {
+                color: $primaryColor;
+                text-decoration: none;
+            }
+        }
+        &__switch {
+            font-size: 1.4rem;
+            margin-top: 32px;
+            color: #ccc;
+            font-weight: 300;
+            text-align: center;
+            &-link {
+                color: $primaryColor;
+                text-decoration: none;
+            }
+        }
+    }
+}
+.auth-form.auth-form--register {
+    display: none;
+}
+// Model
+.auth-form.auth-form--login {
+    display: none;
 }
