@@ -1,0 +1,8 @@
+$primaryColor: #fb5533;
+$subPrimaryColor: #ff6633;
+$textColor: #333;
+$bcColor: #f5f5f5;
+$maxWidth: 1200px;
+@media screen and (max-width: 1199px) {
+    $maxWidth: 100%;
+}

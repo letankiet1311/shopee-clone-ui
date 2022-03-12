@@ -1,0 +1,66 @@
+// Align + max width
+@mixin toCenter() {
+    width: $maxWidth;
+    max-width: 100%;
+    margin: auto;
+}
+// Absolute center
+@mixin absoluteCenter($direction: "left") {
+    position: absolute;
+    @if $direction == "left" {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    @if $direction == "top" {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    @if $direction == "both" {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+// Box shadow
+@mixin boxShadow() {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+// Text truncate
+@mixin textTruncate($lineNumber: 1) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lineNumber;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+// Pseudo bridge
+@mixin pseudoBridge($height: 10px, $width: 100%) {
+    display: block;
+    width: $width;
+    height: $height;
+    position: absolute;
+    top: -$height;
+    left: 0;
+}
+// Border triangle
+@mixin borderTriangle($top, $right) {
+    border-width: 20px 30px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    border-top: none;
+    position: absolute;
+    top: $top;
+    right: $right;
+}
+// Responsive
+@mixin maxWidth($value) {
+    @media screen and (max-width: $value) {
+        @content;
+    }
+}
+@mixin minWidth($value) {
+    @media screen and (min-width: $value) {
+        @content;
+    }
+}
