@@ -12,13 +12,21 @@
     color: $textColor;
     font-size: 1.4rem;
     cursor: pointer;
+    &:hover {
+        background-color: #fafafa;
+    }
 }
-.btn:hover {
-    background-color: #fafafa;
+
+.disable {
+    opacity: 0.4;
+    cursor: default;
 }
 .btn.btn--primary {
     background-color: $primaryColor;
     color: #fff;
+    &:hover {
+        opacity: 0.9;
+    }
 }
 // Model
 .model {
